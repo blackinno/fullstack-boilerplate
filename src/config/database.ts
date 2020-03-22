@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
 import options from '../utils/db_option'
-import { threadId } from 'worker_threads'
 
 class Database {
 	private mongo_uri: string
