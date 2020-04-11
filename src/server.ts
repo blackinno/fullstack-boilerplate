@@ -4,13 +4,22 @@ import cors from 'cors'
 import morgan from 'morgan'
 import compression from 'compression'
 
+import Database from './config/database'
+
 /* Routes */
+
 import defaultRoute from './routes/defaultRoute'
+
+if (process.env.NODE_ENV) {
+	require('./config/environment-config')
+}
 
 class Server {
 	public app: express.Application
+	private database: Database = new Database(process.env.DB_ENDPOINT)
 	constructor() {
 		this.app = express()
+		this.startDatabase()
 		this.middleware()
 		this.routes()
 	}
@@ -24,6 +33,10 @@ class Server {
 
 	private routes(): void {
 		this.app.use('/', new defaultRoute().router)
+	}
+
+	private startDatabase() {
+		this.database.start().catch(console.error)
 	}
 }
 
