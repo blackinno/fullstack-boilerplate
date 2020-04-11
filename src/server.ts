@@ -6,6 +6,8 @@ import compression from 'compression'
 
 import Database from './config/database'
 
+import './config/environment-config'
+
 /* Routes */
 import defaultRoute from './routes/defaultRoute'
 
