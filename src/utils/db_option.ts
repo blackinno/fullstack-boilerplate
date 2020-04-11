@@ -4,11 +4,10 @@ export default {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	serverSelectionTimeoutMS: 3000,
-	socketTimeoutMS: 3000
-	// autoReconnect: true,
-	// reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-	// reconnectInterval: 1000 // Reconnect every 1s
-	// user: process.env.DB_USER,
-	// pass: process.env.DB_PASSWORD,
-	// authSource: process.env.DB_AUTHSOURCE
+	socketTimeoutMS: 3000,
+	user: process.env.DB_USER,
+	pass: process.env.DB_PASSWORD,
+	authSource: process.env.DB_AUTHSOURCE,
+	ssl: (process.env.DB_SSL || '').toLowerCase() === 'true',
+	replicaSet: process.env.DB_REPLICA,
 }

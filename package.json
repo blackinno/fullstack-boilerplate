@@ -4,9 +4,11 @@
 	"description": "NodeJS Express using TypeScript to setup project",
 	"main": "dist/index.js",
 	"scripts": {
+		"postinstall": "tsc",
 		"clean": " rimraf ./dist",
-		"start": "ts-node src/index.ts",
-		"start:prod": "npm run clean && npm run build && node dist/index.js",
+		"start": "node dist/index.js",
+		"start:dev": "ts-node src/index.ts",
+		"start:prod": "npm run clean && npm run build && NODE_ENV=production node dist/index.js",
 		"tsc:dev": "ts-node-dev --respawn src/index.ts",
 		"node:dev": "nodemon --exec ts-node src/index.ts",
 		"build": "tsc -p .",
