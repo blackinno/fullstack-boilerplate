@@ -6,10 +6,13 @@ import compression from 'compression'
 
 import Database from './config/database'
 
-import './config/environment-config'
-
 /* Routes */
+
 import defaultRoute from './routes/defaultRoute'
+
+if (process.env.NODE_ENV) {
+	require('./config/environment-config')
+}
 
 class Server {
 	public app: express.Application
