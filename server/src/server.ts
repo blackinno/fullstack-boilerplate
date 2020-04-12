@@ -6,6 +6,8 @@ import compression from 'compression'
 
 import Database from './config/database'
 
+import './config/passport'
+
 /* Routes */
 
 import ApiRoutes from './routes/apiRoutes'

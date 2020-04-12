@@ -2,9 +2,28 @@ import { Request, Response, NextFunction } from 'express'
 
 class UserController {
 	/**
-	 * defaultPath
+	 * CREATE
 	 */
-	public defaultPath(req: Request, res: Response): void {
+	public register(req: Request, res: Response, next: NextFunction): void {
+		res.status(200).send('Hello from NodeJS boilerplate using TypeScript')
+	}
+
+	/**
+	 * UPDATE
+	 */
+	public updateUser(req: Request, res: Response, next: NextFunction): void {}
+
+	/**
+	 * READ
+	 */
+	public login(req: Request, res: Response, next: NextFunction): void {
+		res.status(200).send('Hello from NodeJS boilerplate using TypeScript')
+	}
+
+	/**
+	 * DELETE
+	 */
+	public deleteUser(req: Request, res: Response, next: NextFunction): void {
 		res.status(200).send('Hello from NodeJS boilerplate using TypeScript')
 	}
 }
