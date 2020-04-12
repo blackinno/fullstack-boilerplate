@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-class DefaultController {
+class UserController {
 	/**
 	 * defaultPath
 	 */
@@ -9,4 +9,4 @@ class DefaultController {
 	}
 }
 
-export default DefaultController
+export default UserController

@@ -8,7 +8,7 @@ import Database from './config/database'
 
 /* Routes */
 
-import defaultRoute from './routes/defaultRoute'
+import ApiRoutes from './routes/apiRoutes'
 
 if (process.env.NODE_ENV) {
 	require('./config/environment-config')
@@ -32,7 +32,7 @@ class Server {
 	}
 
 	private routes(): void {
-		this.app.use('/', new defaultRoute().router)
+		this.app.use('/', new ApiRoutes().router)
 	}
 
 	private startDatabase() {
