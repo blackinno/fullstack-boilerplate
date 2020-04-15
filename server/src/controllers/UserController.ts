@@ -28,8 +28,8 @@ class UserController {
   public async updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     const { user } = req
     try {
-      // const getUser = await User.findById({ id: user?._id })
-      // console.log(getUser)
+      const getUser = await User.findById({ id: user._id })
+      console.log(getUser)
     } catch (error) {
       res.status(500)
     }
