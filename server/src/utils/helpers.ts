@@ -22,13 +22,15 @@ export const hashPassword = async (password: string): Promise<string> => {
 }
 
 export const signToken = (user: any): string => {
-  delete user.password
+  const data = { ...user }
+  const v = data._doc
+
+  delete v.password
+
   return sign(
     {
       iss: 'MESG',
-      sub: user,
-      iat: new Date().getTime(), // current time
-      exp: new Date().setDate(new Date().getDate() + 7),
+      sub: v,
     },
     process.env.SECRET
   )

@@ -10,42 +10,46 @@ const LocalStrategy = passportLocal.Strategy
 const JwtStrategy = passportJwt.Strategy
 const ExtractJwt = passportJwt.ExtractJwt
 
-export default () => {
-	passport.serializeUser<any, any>((user, done) => {
-		done(null, user)
-	})
+passport.serializeUser<any, any>((user, done) => {
+  done(null, user)
+})
 
-	passport.deserializeUser<any, any>((obj, done) => {
-		done(null, obj)
-	})
+passport.deserializeUser<any, any>((obj, done) => {
+  done(null, obj)
+})
 
-	// Local
-	passport.use(
-		new LocalStrategy({ usernameField: 'username', passwordField: 'password' }, async (email, password, done) => {
-			try {
-				const user = await User.findOne({ email })
-				if (!user) return done(null, false)
+// Local
+passport.use(
+  new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (email, password, done) => {
+    try {
+      const user = await User.findOne({ email })
+      if (!user) return done(null, false)
 
-				const isMatch = await matchPassword(user.password, password)
-				if (!isMatch) return done(null, false)
+      const isMatch = await matchPassword(user.password, password)
+      if (!isMatch) return done(null, false)
 
-				return done(null, user)
-			} catch (error) {
-				done(error, false)
-			}
-		})
-	)
+      return done(null, user)
+    } catch (error) {
+      done(error, false)
+    }
+  })
+)
 
-	//Jwt
-	passport.use(
-		new JwtStrategy({ jwtFromRequest: ExtractJwt.fromHeader('authorization'), secretOrKey: process.env.JWT_SECRET }, async (payload, done) => {
-			try {
-				const user = await User.findById(payload.sub.id)
-				if (!user) return done(null, false)
-				return done(null, user)
-			} catch (error) {
-				done(error, false)
-			}
-		})
-	)
-}
+//Jwt
+passport.use(
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+      secretOrKey: process.env.SECRET,
+    },
+    async (payload, done) => {
+      try {
+        const user = await User.findById(payload.sub._id)
+        if (!user) return done(null, false)
+        return done(null, user)
+      } catch (error) {
+        done(error, false)
+      }
+    }
+  )
+)

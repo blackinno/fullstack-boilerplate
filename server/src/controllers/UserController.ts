@@ -1,8 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction, response } from 'express'
 import { User } from '../models/user'
-import { signToken } from '../utils/helpers'
+import { signToken, hashPassword } from '../utils/helpers'
 import passport from 'passport'
-import { Types } from 'mongoose'
 
 class UserController {
   /**
@@ -13,7 +12,7 @@ class UserController {
     try {
       const foundUser = await User.findOne({ email })
       if (foundUser) return res.status(200).send({ success: false, message: 'The email has already exist' })
-      const newUser = new User({ first_name, last_name, email, password, created_at: Date.now(), updated_at: Date.now() })
+      const newUser = new User({ first_name, last_name, email, password: await hashPassword(password), created_at: Date.now(), updated_at: Date.now() })
       const user = await newUser.save()
       const token = signToken(user)
       return res.status(200).send({ success: true, token })
@@ -38,6 +37,18 @@ class UserController {
   /**
    * READ
    */
+  public getProfile(req: Request, res: Response, next: NextFunction) {
+    const { user } = req
+    try {
+      const data = { ...user }
+      const v = data._doc
+      delete v.password
+      return res.status(200).send({ success: true, user: v })
+    } catch (error) {
+      return res.status(500)
+    }
+  }
+
   public login(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate('local', { session: false }, (err, user) => {
       if (err) return next(err)

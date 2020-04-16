@@ -6,11 +6,9 @@ import compression from 'compression'
 
 import Database from './config/database'
 
-import './config/passport'
-
 /* Routes */
-
-import ApiRoutes from './routes/apiRoutes'
+import UserRouter from './routes/user'
+import ApiRoutes from './routes/api'
 
 if (process.env.NODE_ENV) {
   require('./config/environment-config')
@@ -41,7 +39,7 @@ class Server {
   }
 
   private routes(): void {
-    this.app.use('/', new ApiRoutes().router)
+    this.app.use('/user', new UserRouter().router)
   }
 
   private startDatabase() {
