@@ -1,67 +1,66 @@
 {
-	"name": "typescript-boilerplate",
-	"version": "1.0.0",
-	"description": "NodeJS Express using TypeScript to setup project",
-	"main": "dist/index.js",
-	"scripts": {
-		"postinstall": "tsc",
-		"clean": " rimraf ./dist",
-		"start": "node dist/index.js",
-		"start:dev": "ts-node src/index.ts",
-		"start:prod": "npm run clean && npm run build && NODE_ENV=production node dist/index.js",
-		"tsc:dev": "ts-node-dev --respawn src/index.ts",
-		"node:dev": "nodemon --exec ts-node src/index.ts",
-		"build": "npm run clean && tsc -b",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/blackinno/typescript-boilerplate.git"
-	},
-	"keywords": [
-		"NodeJS",
-		"node",
-		"nodejs",
-		"express",
-		"typescript",
-		"boillerplate"
-	],
-	"author": "Thotsaphon Ben Ruthamnong",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/blackinno/typescript-boilerplate/issues"
-	},
-	"homepage": "https://github.com/blackinno/typescript-boilerplate#readme",
-	"dependencies": {
-		"bcrypt": "^5.0.0",
-		"body-parser": "^1.19.0",
-		"compression": "^1.7.4",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^5.9.5",
-		"morgan": "^1.10.0",
-		"passport": "^0.4.1",
-		"passport-jwt": "^4.0.0",
-		"passport-local": "^1.0.0",
-		"rimraf": "^3.0.2"
-	},
-	"devDependencies": {
-		"@types/bcrypt": "^3.0.0",
-		"@types/compression": "^1.7.0",
-		"@types/cors": "^2.8.6",
-		"@types/express": "^4.17.3",
-		"@types/jsonwebtoken": "^8.3.9",
-		"@types/mongoose": "^5.7.7",
-		"@types/morgan": "^1.9.0",
-		"@types/node": "^13.9.2",
-		"@types/passport": "^1.0.3",
-		"@types/passport-jwt": "^3.0.3",
-		"@types/passport-local": "^1.0.33",
-		"nodemon": "^2.0.2",
-		"ts-node": "^8.7.0",
-		"ts-node-dev": "^1.0.0-pre.44",
-		"typescript": "^3.8.3"
-	}
+  "name": "server",
+  "version": "1.0.0",
+  "description": "NodeJS Express using TypeScript to setup project",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": " rimraf ./dist",
+    "start": "node dist/index.js",
+    "start:dev": "ts-node src/index.ts",
+    "start:prod": "npm run clean && npm run build && NODE_ENV=production node dist/index.js",
+    "tsc:dev": "ts-node-dev --respawn src/index.ts",
+    "node:dev": "nodemon --exec ts-node src/index.ts",
+    "build": "npm run clean && tsc -b",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackinno/fullstack-boilerplate.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "node",
+    "nodejs",
+    "express",
+    "typescript",
+    "boillerplate"
+  ],
+  "author": "Thotsaphon Ben Ruthamnong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackinno/fullstack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/blackinno/fullstack-boilerplate#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.5",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/compression": "^1.7.0",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/mongoose": "^5.7.7",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^13.9.2",
+    "@types/passport": "^1.0.3",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/passport-local": "^1.0.33",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.7.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  }
 }
