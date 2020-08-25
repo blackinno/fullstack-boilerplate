@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { User } from '../models/user'
 import { signToken, hashPassword } from '../utils/helpers'
 import passport from 'passport'
@@ -7,12 +7,26 @@ class UserController {
   /**
    * CREATE
    */
-  public async register(req: Request, res: Response, next: NextFunction): Promise<any> {
+  public async register(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
     const { email, password, first_name, last_name } = req.body
     try {
       const foundUser = await User.findOne({ email })
-      if (foundUser) return res.status(200).send({ success: false, message: 'The email has already exist' })
-      const newUser = new User({ first_name, last_name, email, password: await hashPassword(password), created_at: Date.now(), updated_at: Date.now() })
+      if (foundUser)
+        return res
+          .status(200)
+          .send({ success: false, message: 'The email has already exist' })
+      const newUser = new User({
+        first_name,
+        last_name,
+        email,
+        password: await hashPassword(password),
+        created_at: Date.now(),
+        updated_at: Date.now(),
+      })
       const user = await newUser.save()
       const token = signToken(user)
       return res.status(200).send({ success: true, token })
@@ -24,11 +38,16 @@ class UserController {
   /**
    * UPDATE
    */
-  public async updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+  public async updateUser(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
     const { user } = req
     try {
-      const getUser = await User.findById({ id: user._id })
-      console.log(getUser)
+      const data: any = user
+      const getUser = await User.findById({ _id: data._id })
+      return res.status(200).send({ success: true, user: getUser })
     } catch (error) {
       res.status(500)
     }
@@ -40,7 +59,7 @@ class UserController {
   public getProfile(req: Request, res: Response, next: NextFunction) {
     const { user } = req
     try {
-      const data = { ...user }
+      const data: any = { ...user }
       const v = data._doc
       delete v.password
       return res.status(200).send({ success: true, user: v })
@@ -52,7 +71,8 @@ class UserController {
   public login(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate('local', { session: false }, (err, user) => {
       if (err) return next(err)
-      if (!user) return res.status(401).json({ status: 'error', code: 'unauthorized' })
+      if (!user)
+        return res.status(401).json({ status: 'error', code: 'unauthorized' })
       const token = signToken(user)
       res.status(200).send({ success: true, token })
     })(req, res, next)
@@ -62,7 +82,10 @@ class UserController {
    * DELETE
    */
   public deleteUser(req: Request, res: Response, next: NextFunction): void {
-    res.status(200).send('Hello from NodeJS boilerplate using TypeScript')
+    res
+      .status(200)
+      .json({ data: 'Hello from NodeJS boilerplate using TypeScript' })
+    res.end()
   }
 }
 
