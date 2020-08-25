@@ -1,0 +1,30 @@
+{
+  "name": "fullstack-boilerplate",
+  "version": "1.0.0",
+  "description": "setup boilerplate for frontend and backend",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "cd server && npm install && cd .. && cd client && npm install && cd ..",
+    "client": "npm run start --prefix client",
+    "build:client": "npm run build --prefix client",
+    "server": "npm run start:prod --prefix server",
+    "server:dev": "npm run tsc:dev --prefix server",
+    "dev": "concurrently \"npm run client\" \"npm run server:dev\"",
+    "docker:dev:start": "docker-compose -p website_dev -f docker-compose.dev.backend.yml -f docker-compose.dev.website.yml up --build --detach",
+    "docker:dev:stop": "docker-compose -p website_dev -f docker-compose.dev.backend.yml -f docker-compose.dev.website.yml down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackinno/fullstack-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "Thotsaphon Ben Ruthamnong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackinno/fullstack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/blackinno/fullstack-boilerplate#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
