@@ -15,9 +15,8 @@ git clone https://github.com/blackinno/fullstack-boilerplate.git
 
 ### Development
 
-**Development environments:**
+**Default Backend environments**
 
-Default Backend environments
 - `PORT = 5050`
 - `DB_ENDPOINT = mongodb://localhost:27017/test`
 - `SALT = 10`
