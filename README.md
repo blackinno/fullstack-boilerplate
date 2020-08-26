@@ -17,10 +17,11 @@ git clone https://github.com/blackinno/fullstack-boilerplate.git
 
 **Development environments:**
 
-Default environments:
-
+Default Backend environments
 - `PORT = 5050`
 - `DB_ENDPOINT = mongodb://localhost:27017/test`
+- `SALT = 10`
+- `SECRET = NODE_JWT_SECRET`
 
 You can change to your environments as `environments/.env.de`
 
@@ -67,3 +68,11 @@ npm run docker:dev:stop
 - View a frontend result as `http://localhost:3000`
 
 - View a backend result as `http://localhost:5050`
+
+## TODO
+
+- [ ] Add eslint
+
+- [ ] Add prettier
+
+- [ ] Add unit-test
