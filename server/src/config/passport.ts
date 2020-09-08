@@ -32,7 +32,7 @@ passport.use(
     } catch (error) {
       done(error, false)
     }
-  })
+  }),
 )
 
 //Jwt
@@ -50,6 +50,6 @@ passport.use(
       } catch (error) {
         done(error, false)
       }
-    }
-  )
+    },
+  ),
 )
