@@ -73,5 +73,3 @@ npm run docker:dev:stop
 - [ ] Add eslint
 
 - [ ] Add prettier
-
-- [ ] Add unit-test
